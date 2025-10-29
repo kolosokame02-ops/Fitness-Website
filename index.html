@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PulseFit — Modern Fitness Template</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <meta name="description" content="Modern responsive fitness website template with hero, services, and contact page." />
+  <style>
+    :root{
+      --bg:#0f1724; /* deep navy */
+      --card:#0b1220;
+      --muted:#98a0b3;
+      --accent:#ff6b6b; /* coral */
+      --accent-2:#7c5cff; /* purple */
+      --glass: rgba(255,255,255,0.04);
+      --radius: 14px;
+      --max:1100px;
+      --gap:24px;
+      --shadow: 0 8px 30px rgba(2,6,23,0.6);
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;background:linear-gradient(180deg,#071028 0%, #031022 100%);color:#e6eef8;margin:0}
+    a{color:inherit;text-decoration:none}
+    .container{max-width:var(--max);margin:0 auto;padding:48px 20px}
+
+    /* Nav */
+    header{position:sticky;top:18px;z-index:60}
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px;background:linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:12px}
+    .brand{display:flex;gap:12px;align-items:center}
+    .logo{width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:flex;align-items:center;justify-content:center;font-weight:800;color:white}
+    nav ul{display:flex;gap:18px;align-items:center;margin:0;padding:0;list-style:none}
+    .cta{padding:10px 16px;border-radius:10px;background:linear-gradient(90deg,var(--accent),#ff8b8b);font-weight:700}
+
+    /* Mobile nav */
+    .mobile-toggle{display:none;background:transparent;border:0;color:inherit;font-size:20px}
+
+    /* Hero */
+    .hero{display:grid;grid-template-columns:1fr;gap:28px;align-items:center;padding:56px 0}
+    .hero-card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:18px;padding:28px;box-shadow:var(--shadow)}
+    .hero h1{font-size:clamp(28px,5vw,48px);line-height:1.02;margin:0}
+    .hero p{color:var(--muted);margin-top:12px;font-size:16px}
+    .hero-ctas{display:flex;gap:12px;margin-top:18px}
+    .btn{padding:12px 18px;border-radius:12px;font-weight:700;border:0;cursor:pointer}
+    .btn-primary{background:linear-gradient(90deg,var(--accent),var(--accent-2));}
+    .btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.06)}
+
+    /* Services */
+    .services{display:grid;grid-template-columns:1fr;gap:18px;margin-top:28px}
+    .service-grid{display:grid;grid-template-columns:repeat(1,1fr);gap:18px}
+    .service{background:var(--glass);padding:18px;border-radius:12px}
+    .service h3{margin:8px 0}
+    .icon{width:56px;height:56px;border-radius:10px;background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));display:grid;place-items:center}
+
+    /* Contact */
+    .contact{display:grid;grid-template-columns:1fr;gap:18px;margin-top:28px}
+    form{display:flex;flex-direction:column;gap:12px}
+    input,textarea{padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.06);background:transparent;color:inherit;font-size:14px}
+    textarea{min-height:140px;resize:vertical}
+    .muted{color:var(--muted);font-size:14px}
+
+    /* Footer */
+    footer{margin-top:40px;padding:20px 0;color:var(--muted);text-align:center}
+
+    /* Utilities */
+    .row{display:flex;gap:18px;align-items:center}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:18px;border-radius:16px}
+
+    /* Responsive */
+    @media(min-width:720px){
+      .hero{grid-template-columns:1fr 420px}
+      .service-grid{grid-template-columns:repeat(2,1fr)}
+      .contact{grid-template-columns:1fr 420px}
+      nav ul{gap:22px}
+      .mobile-toggle{display:none}
+    }
+    @media(max-width:719px){
+      .mobile-toggle{display:inline-block}
+      nav ul{display:none}
+    }
+
+    /* small visual tweaks */
+    .highlight{background:linear-gradient(90deg, rgba(255,107,107,0.12), rgba(124,92,255,0.08));padding:6px 10px;border-radius:999px;color:var(--accent)}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="nav" role="navigation" aria-label="Main Navigation">
+        <div class="brand">
+          <div class="logo">PF</div>
+          <div>
+            <div style="font-weight:700">PulseFit</div>
+            <div class="muted" style="font-size:12px">Move better • Feel stronger</div>
+          </div>
+        </div>
+
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu">☰</button>
+
+        <nav aria-hidden="false">
+          <ul id="mainNav">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a class="cta" href="#contact">Book Free Consult</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero" id="home">
+      <div class="hero-card">
+        <div class="highlight" style="display:inline-block">New — 30 Day Transformation</div>
+        <h1>Train smarter. Live stronger.<br><span style="color:var(--accent-2)">Personal coaching • Group classes • Online plans</span></h1>
+        <p class="muted">PulseFit blends movement science with real human coaching. Tailored programs, flexible scheduling, and a community that keeps you accountable.</p>
+        <div class="hero-ctas">
+          <button class="btn btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Start Your Free Consult</button>
+          <a class="btn btn-ghost" href="#services">Explore Programs</a>
+        </div>
+
+        <div style="margin-top:22px;display:flex;gap:12px;flex-wrap:wrap">
+          <div class="card" style="flex:1;min-width:160px">
+            <div style="font-size:12px;color:var(--muted)">Next class</div>
+            <div style="font-weight:700">HIIT — Mon 6:00 PM</div>
+          </div>
+          <div class="card" style="flex:1;min-width:160px">
+            <div style="font-size:12px;color:var(--muted)">Featured coach</div>
+            <div style="font-weight:700">Asha K — Strength & Mobility</div>
+          </div>
+        </div>
+      </div>
+
+      <aside style="padding:8px;display:flex;flex-direction:column;gap:12px">
+        <div class="card" style="display:flex;flex-direction:column;gap:8px;align-items:flex-start">
+          <div style="font-size:12px;color:var(--muted)">Weekly plan</div>
+          <div style="font-weight:700">Beginner • 4 sessions</div>
+          <div class="muted" style="font-size:13px">Includes video walkthroughs + progress tracker</div>
+        </div>
+
+        <div class="card" style="text-align:center">
+          <div style="font-size:12px;color:var(--muted)">Success rate</div>
+          <div style="font-weight:800;font-size:22px">92%</div>
+          <div class="muted" style="font-size:13px">Client goal completion</div>
+        </div>
+
+        <div class="card" style="text-align:center">
+          <div style="font-size:12px;color:var(--muted)">Avg. session</div>
+          <div style="font-weight:800;font-size:22px">45m</div>
+          <div class="muted" style="font-size:13px">Efficient & focused</div>
+        </div>
+      </aside>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
+        <div>
+          <h2 style="margin:0">Our Services</h2>
+          <div class="muted" style="margin-top:6px">Programs built for real life — scalable for every level</div>
+        </div>
+        <div style="color:var(--muted);font-size:14px">Popular • 300+ active members</div>
+      </div>
+
+      <div class="services" style="margin-top:18px">
+        <div class="service-grid">
+          <article class="service row" aria-labelledby="s1">
+            <div class="icon" aria-hidden="true">
+              <!-- dumbbell svg -->
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 10v4h2v-4H3zM19 10v4h2v-4h-2zM8 12h8v0" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div>
+              <h3 id="s1">Personal Training</h3>
+              <p class="muted">1:1 coaching with individualized programs, progress tracking, and nutrition guidance.</p>
+            </div>
+          </article>
+
+          <article class="service row" aria-labelledby="s2">
+            <div class="icon" aria-hidden>
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M12 2v20" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M20 6L4 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div>
+              <h3 id="s2">Group Classes</h3>
+              <p class="muted">High-energy HIIT, Strength, Mobility and Yoga classes — both in-studio and online.</p>
+            </div>
+          </article>
+
+          <article class="service row" aria-labelledby="s3">
+            <div class="icon" aria-hidden>
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M3 12h18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 3v18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div>
+              <h3 id="s3">Online Plans</h3>
+              <p class="muted">Flexible monthly plans with video demonstrations, weekly check-ins, and a mobile-friendly app view.</p>
+            </div>
+          </article>
+
+          <article class="service row" aria-labelledby="s4">
+            <div class="icon" aria-hidden>
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M12 5v14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 12h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div>
+              <h3 id="s4">Corporate Wellness</h3>
+              <p class="muted">Tailored programs for teams: on-site sessions, ergonomic workshops, and performance assessments.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:var(--gap);margin-top:28px">
+        <div style="flex:1">
+          <h2>Contact & Booking</h2>
+          <p class="muted">Send us a message and we'll get back within 24 hours. Prefer a call? Drop your number and the best time to reach you.</p>
+
+          <form id="contactForm" class="card" onsubmit="return handleSubmit(event)">
+            <label class="muted">Full name<input id="name" name="name" placeholder="Your full name" required></label>
+            <label class="muted">Email<input id="email" name="email" type="email" placeholder="you@example.com" required></label>
+            <label class="muted">Message<textarea id="message" name="message" placeholder="Tell us about your goals" required></textarea></label>
+            <div style="display:flex;gap:12px;align-items:center">
+              <button type="submit" class="btn btn-primary">Send Message</button>
+              <div style="color:var(--muted);font-size:13px">Or email: <a href="mailto:hello@pulsefit.example">hello@pulsefit.example</a></div>
+            </div>
+            <div id="formMsg" class="muted" aria-live="polite" style="margin-top:8px"></div>
+          </form>
+        </div>
+
+        <aside style="width:420px;min-width:280px">
+          <div class="card">
+            <h3 style="margin:0">Visit Us</h3>
+            <div class="muted" style="margin-top:6px">PulseFit Studio — 7 Fitness St, City</div>
+            <div style="margin-top:12px" class="muted">Hours</div>
+            <div style="font-weight:700">Mon — Fri: 5:30 AM — 8:00 PM</div>
+            <div style="font-weight:700">Sat: 7:00 AM — 2:00 PM</div>
+            <div style="margin-top:12px"><a href="#" class="muted">Get directions</a></div>
+          </div>
+
+          <div class="card" style="margin-top:12px">
+            <h4 style="margin:0">Pricing</h4>
+            <div class="muted" style="margin-top:6px">Starter — $29/mo • Pro — $79/mo • Premium — $199/mo</div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <footer>
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
+        <div class="muted">© PulseFit 2025 • Built with care</div>
+        <div class="muted">Follow us: <a href="#">Instagram</a> · <a href="#">Facebook</a> · <a href="#">YouTube</a></div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // mobile toggle
+    const toggle = document.getElementById('mobileToggle');
+    const nav = document.getElementById('mainNav');
+    toggle.addEventListener('click', ()=>{
+      if(nav.style.display === 'flex') nav.style.display='none'; else nav.style.display='flex';
+      nav.style.flexDirection='column';
+      nav.style.background = 'transparent';
+      nav.style.position = 'absolute';
+      nav.style.right = '20px';
+      nav.style.top = '72px';
+      nav.style.padding = '12px';
+      nav.style.borderRadius = '10px';
+    })
+
+    // simple client-side form handler (no real mailing) with validation + fake submit
+    function handleSubmit(e){
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const message = document.getElementById('message').value.trim();
+      const msg = document.getElementById('formMsg');
+      msg.textContent = '';
+
+      if(!name || !email || !message){
+        msg.textContent = 'Please complete all fields.';
+        return false;
+      }
+      // rudimentary email check
+      if(!/^\S+@\S+\.\S+$/.test(email)){
+        msg.textContent = 'Please enter a valid email address.';
+        return false;
+      }
+
+      // show a success state and reset the form — replace this with real API calls
+      msg.textContent = 'Thanks, ' + name.split(' ')[0] + '! Your message was sent. We\'ll be in touch within 24 hours.';
+      document.getElementById('contactForm').reset();
+      return false;
+    }
+  </script>
+</body>
+</html>
